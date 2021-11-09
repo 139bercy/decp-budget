@@ -3,6 +3,7 @@ title: "Prévision budgétaire et données de la commande publique"
 author: "Jules Rostand"
 date: '2021-10-28'
 output: pdf_document
+    extra_dependencies: ["footmisc"]
 subtitle: Exploration des données essentielles de la commande publique
 lang: fr-FR
 abstract: Cette note présente la méthodologie et les résultats de l'étude des donnéesde
@@ -20,13 +21,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Contexte
 
-La direction du Budget s'intéresse, dans le cadre de ses activités de prévision budgétaire, à la modélisation de l'impact de l'inflation sur les dépenses d'achat de l'État. À l'heure actuelle, les données de l'exécution budgétaire ne permettent pas de connaître les contrats qui y sont liés ; celles-ci se situent, en quelque sorte, en aval des marchés conclus par l'État, sans lien avec les engagements juridiques pris en amont. De la même manière, sur l'autre versant de ce phénomène, les données déclaratives de la commande publique, publiées en accès ouvert à la suite d'une politique volontariste en la matière, restent dissociées de toute exécution budgétaire. Dans le but d'affiner l'exercice de prévision de la direction du Budget, cette note explore les données de la commande publique, en entrant dans le détail de la nature des marchés conclus par l'État.
+La direction du Budget s'intéresse, dans le cadre de ses activités de prévision budgétaire, à la modélisation de l'impact de l'inflation sur les dépenses d'achat de l'État. À l'heure actuelle, les données de l'exécution budgétaire ne sont pas liés avec les engagements juridiques pris en amont. Sans connaissance de la nature et des caractéristiques des contrats à l'origine de ces dépenses, la prévision budgétaire est rendue particulièrement délicate. Pourtant, à la suite d'une politique volontariste en la matière, les données essentielles de la commande publique (DECP) sont désormais suivies par la direction des affaires juridiques (DAJ) du secrétariat général (SG) des ministères économiques et financiers et par l'Agence pour l'information financière de l'État (AIFE), avant d'être enrichies par le BercyHub (SG/DSI). Déjà étudiées de manière agrégée par l'Observatoire économique de la commmande publique (OECP)[^5], l'exploration de ces données représente dès lors une piste particulièrement susceptible d'enrichir l'exercice de prévision de la direction du Budget, par le déploiement de nouvelles techniques d'analyse de données.
 
-### Sources et méthodologies
+[^5]: Les chiffres-clefs de la commande publique sont publiés sur le site de l'OECP, à l'adresse : <https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique>. Pour les données antérieures, voir les archives des chiffres clefs à l'adresse : <https://www.economie.gouv.fr/daj/oecp-archives-recensement>.
+
+### Sources et méthodologie
 
 Les données essentielles de la commande publique (DECP) sont publiées par la DAJ du SG Bercy et l'AIFE, puis augmentées par le BercyHub. Elles sont mises en *open source* sur la plateforme du ministère, accessible à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table>.
 
-Grâce à la collaboration avec la direction du Budget (2PERF), ces données ont été filtrées en conservant uniquement les marchés publiés par l'AIFE et correspondant aux acheteurs relevant du strict périmètre de l'État. Dans un souci de qualité des données, les marchés publiés avant 2018 ont été exclus. Un aperçu des données, de leur taille et de leur contenu, est disponible ci-dessous.
+Grâce à la collaboration avec la direction du Budget (2PERF), ces données ont été filtrées en conservant uniquement les marchés publiés par l'AIFE et correspondant aux acheteurs relevant du strict périmètre de l'État[^4]. Dans un souci de qualité des données, les marchés publiés avant 2018 ont été exclus. Un aperçu des données, de leur taille et de leur contenu, est disponible ci-dessous.
+
+[^4]: Plus précisément, les marchés relatifs aux identifiants et aux noms des acheteurs de ce périmètre, à savoir les Ministères, directions centrales, etc., selon une liste établie par 2PERF.
 
 ```{r intro, echo=FALSE, message=FALSE}
 # Librairies génériques
@@ -65,6 +70,10 @@ read_delim(file = "res/decp_aife_etat_post2018_marche.csv",
 # Affichage des premières lignes et colonnes des DECP
 decp_aife_etat_post2018_marche
 ```
+
+### Avertissement
+
+L'ensemble des analyses et des résultats proposés dans cette note sont à interpréter à la hauteur de l'exhaustivité et de la qualité des données essentielles de la commande publique. En d'autres termes, cette analyse exploratoire reste à compléter par des études plus complètes.
 
 ## Périodisation
 
