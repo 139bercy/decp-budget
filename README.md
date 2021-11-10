@@ -25,4 +25,4 @@ Ce projet nécessite la mise en œuvre d'un étape de sélection manuelle, qui p
 
 ### Sélection manuelle des données (optionnelle)
 
-La sélection manuelle des données consiste ici à ne sélectionner que les marchés de la commande publique relevant du périmètre de l'État. Pour ce faire, il est nécessaire de disposer d'une liste des acheteurs de l'État. Afin d'établir celle-ci, le script `filtre_budget_etat.py` établit la liste des identifiants et des noms des acheteurs présents dans la base de données. Celle-ci doit être ensuite traitée manuellement, pour spécifier si chaque couple d’identifiant et de nom relève bien de ce périmètre.
+La sélection manuelle des données consiste ici à ne sélectionner que les marchés de la commande publique relevant du périmètre de l'État. Pour ce faire, il est nécessaire de disposer d'une liste des acheteurs de l'État. Afin d'établir celle-ci, le script `filtre_perimetre_etat.py` établit la liste des identifiants et des noms des acheteurs présents dans la base de données. Celle-ci doit être ensuite traitée manuellement, pour spécifier si chaque couple d’identifiant et de nom relève bien de ce périmètre.

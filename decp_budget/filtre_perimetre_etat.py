@@ -6,16 +6,10 @@
 import pandas as pd
 
 # Données sources
-decp_safe = pd.read_csv("data/decp_augmente.csv", 
+decp = pd.read_csv("data/decp/decp_augmente.csv", 
 	sep = ";", 
 	dtype={'idAcheteur': str}, 
 	encoding="UTF-8")
-
-etat_safe = pd.read_csv('data/ZBUD51 budget Etat 2020.csv', 
-	sep = ";", 
-	thousands=" ", 
-	decimal=",", 
-	dtype={'EUR' : float})
 
 # On ne conserve que les données provenant de l'Agence pour l'information financière de l'ÉTat (AIFE)
 decp_aife = decp[decp['source'] == 'data.gouv.fr_aife']
@@ -42,6 +36,6 @@ decp_acheteur = decp_aife[keep_cols_acheteur]
 res = decp_acheteur.groupby(['idAcheteur', 'nomAcheteur']).all().sort_values('idAcheteur')
 
 # Export en CSV
-res.to_csv("select_acheteurs_grouped.csv", 
+res.to_csv("data/decp/select_acheteurs_grouped.csv", 
 	sep = ";", 
 	encoding="UTF-8")
