@@ -671,3 +671,18 @@ decp_work %>%
         plot.title = element_text(size = 10, face = "bold", hjust = 0.5),
         plot.subtitle = element_text(size = 8, hjust = 0.5),
         axis.title.y = element_text(size = 8))
+
+# Etude des données de l'OECP
+# Import des chiffres clefs
+read_delim(file = "data/oecp_chiffres-clefs-decp-2020_octobre-2021.csv",
+           delim = ";", 
+           escape_double = FALSE,
+           skip = 1,
+           locale = locale(date_names = "fr", decimal_mark = ","), 
+           trim_ws = TRUE) -> oecp
+
+# Présentation en Rmarkdown
+knitr::kable(oecp, caption = "Chiffres clefs 2021 de l'OECP", 
+             align = "lrrr", 
+             digits = 2, 
+             format.args = list(big.mark = " ", scientific = FALSE))

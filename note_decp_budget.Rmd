@@ -2,8 +2,12 @@
 title: "Prévision budgétaire et données de la commande publique"
 author: "Jules Rostand"
 date: '2021-10-28'
-output: pdf_document
-    extra_dependencies: ["footmisc"]
+output:
+  pdf_document:
+    extra_dependencies: 
+      footmisc: ["bottom"]
+  html_document:
+    df_print: paged
 subtitle: Exploration des données essentielles de la commande publique
 lang: fr-FR
 abstract: Cette note présente la méthodologie et les résultats de l'étude des donnéesde
@@ -11,6 +15,9 @@ abstract: Cette note présente la méthodologie et les résultats de l'étude de
   la collaboration avec la direction du Budget, cette exploration des données essentielles
   de la commande publique permet d'estimer la part des marchés à prix fermes à 20%
   de l'ensemble des marchés de l'État.
+urlcolor: blue
+linkcolor: blue
+filecolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -75,6 +82,45 @@ decp_aife_etat_post2018_marche
 
 L'ensemble des analyses et des résultats proposés dans cette note sont à interpréter à la hauteur de l'exhaustivité et de la qualité des données essentielles de la commande publique. En d'autres termes, cette analyse exploratoire reste à compléter par des études plus complètes.
 
+## Analyse descriptive
+
+Les données essentielles de la commande publique s'interprètent tout d'abord en nombre et en montant. La table ci-dessous retrace le nombre et le montant[^6] annuel des contrats de la commande publique recensés dans la base à l'étude.
+
+[^6]: La variable "montant" correspond à la somme des montants déclarés, tandis que la variable "montant calculé" correspond à la somme des montants corrigés par le BercyHub, dans le cadre du [projet DECP augmentées](https://github.com/139bercy/decp-augmente). L'ensemble des transformations effectuées est disponible dans la documentation de ce projet, et reprises dans la documentation générale sur les données essentielles de la commande publique, accessible à l'adresse : <https://139bercy.github.io/decp-docs/>.
+
+```{r stat_desc_oecp, echo=FALSE, message=FALSE}
+library(tibble)
+decp_aife_etat_post2018_marche %>%
+  group_by(anneeNotification) %>%
+  summarise(nombre = n(), montant_reporte = sum(montant), montant_calcule = sum(montantCalcule)) %>%
+  column_to_rownames(var = "anneeNotification") -> res01
+
+knitr::kable(res01, caption = "Statistiques descriptives des DECP", align = "lrrr", digits = 2, format.args = list(big.mark = " ",
+  scientific = FALSE))
+```
+
+Cette présentation synthétique permet d'établir un ordre de grandeur du nombre annuel de marchés à 8 000, et un montant total de ces derniers à 10 milliards d'euros. Ces données sur le périmètre État peuvent être rapprochées à la fois des chiffres clefs de l'OECP et des informations issues de l'exécution budgétaire.
+
+En ce qui concerne l'étude de la commande publique, l'OECP publie des chiffres clefs regroupant l'État et le secteur hospitalier. Dans se version de 2020, ceux-ci indiquent ainsi un total de 24 139 contrats, pour un montan total de 35 milliards d'euros[^8]. Cela correspond à environ trois fois le nombre et le montant dans les chiffres dont l'on dipose. En l'absence toutefois de distinction de leur part entre État et secteur hospitalier, il est difficile de tirer une conclusion quant à la représentativité de nos données.
+
+[^8]: OECP, "Chiffres clefs 2020", octobre 2021, s. 5, accessible à l'adresse : <https://www.economie.gouv.fr/files/files/directions_services/daj/marches_publics/oecp/recensement/recensement_chiffres2020_20211012.pdf>.
+
+```{r stats_desc_oecp, echo=FALSE, message=FALSE}
+# Import des chiffres clefs
+read_delim(file = "data/oecp_chiffres-clefs-decp-2020_octobre-2021.csv",
+           delim = ";", 
+           escape_double = FALSE,
+           skip = 1,
+           locale = locale(date_names = "fr", decimal_mark = ","), 
+           trim_ws = TRUE) -> oecp
+
+# Présentation en Rmarkdown
+knitr::kable(oecp, caption = "Chiffres clefs 2020 de l'OECP", 
+             align = "lrrr", 
+             digits = 2, 
+             format.args = list(big.mark = " ", scientific = FALSE))
+```
+
 ## Périodisation
 
 Sur le périmètre de l'État, les données de la commande publique mettent en avant une forte hausse du nombre de marchés publiés en accès ouvert. Cette hausse est le reflet de la mise en place de la politique d'ouverture des données, sans que la baisse à la fin de la période trouve elle d'explication immédiate (délais de publication, problèmes techniques lors de l'agrégation des sources, etc.).
@@ -96,7 +142,7 @@ decp_aife_etat_post2018_marche %>%
 
 A l'aide d'une approche algorithmique[^1], on identifie une période de stabilité du nombre de contrats. C'est sur cette période, qui court de la fin de l'année 2018 au début de l'année 2021, que l'on établira les analyses successives.
 
-[^1]:  R. Killick, P. Fearnhead & I. A. Eckley (2012) Optimal Detection of Changepoints With a Linear Computational Cost, Journal of the American Statistical Association, 107:500, 1590-1598, DOI: 10.1080/01621459.2012.737745, accessible à l'adresse : <https://arxiv.org/abs/1101.1438>.
+[^1]: La détection de ruptures au sein de cette série temporelle s'opère ici en moyenne et en variance, avec un nombre minimum de 5 segments (soit, ici,  5 mois). La librairie employée ici, avec la méthode "PELT" pour un critère d'information bayésien (BIC) avec une distribution normale, est proposée par R. Killick, P. Fearnhead & I. A. Eckley (2012), "Optimal Detection of Changepoints With a Linear Computational Cost", *Journal of the American Statistical Association*, 107:500, 1590-1598, DOI: 10.1080/01621459.2012.737745, accessible à l'adresse : <https://arxiv.org/abs/1101.1438>.
 
 ```{r changepoints, echo=FALSE, message=FALSE}
 # Agrégation par mois
