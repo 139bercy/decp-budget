@@ -9,9 +9,12 @@
 *.xls
 *.*#
 
+#TODO
+todo.md
+
 # Jupyter Notebbok
-.ipynb_checkpoints/*
-/*.ipynb_checkpoints/*
+.ipynb_checkpoints
+**/*.ipynb_checkpoints/
 
 # R Studio
 *.Rproj
