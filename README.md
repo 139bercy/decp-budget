@@ -40,3 +40,11 @@ Le script `filtre_decp_etat` a pour fonction de filtrer les données essentielle
 - définies comme des marchés 
 
 On enrichit ces données en construisant une mensualité théorique pour chacun des marchés.
+
+#### Filtre sur l'exécution budgétaire
+
+Le script `filtre_budget_etat.py` a pour fonction de filtrer les données d'exécution budgétair, telles que fournies par le direction du Budget. A la sortie, on conserve les données : 
+
+- sur l'ensemble du périmètre des ministères, à l'exception de celui des Armées, faisant l'objet d'une modélisation spécifique ;
+- sur les comptes budgétaires 31, 51 et 52, c'est-à-dire les dépenses e fonctionnement, les dépenses d’investissement corporels et les dépenses d’investissement incorporels ;
+- sur les compte généraux, en suivant les recommendations de la direction du Budget.
