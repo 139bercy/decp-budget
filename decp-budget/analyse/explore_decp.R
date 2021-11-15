@@ -5,10 +5,10 @@ usethis::use_proprietary_license(copyright_holder = "Secrétariat général des 
 # Jules Rostand
 
 # Description
-# Ce script R ptopose une exploration dans les données essentielles de la commande publique (DECP).
+# Ce script R propose une exploration dans les données essentielles de la commande publique (DECP).
 # Celles-ci sont enrichies par le BercyHub; et publiées en open source.
 # https://data.economie.gouv.fr/explore/dataset/decp_augmente/information/
-# Ces données sont prétraitées en Python, dansle fichier decp_budget.ipynb
+# Ces données sont préparées en Python, dans le dossier data/filtres
 
 # Librairies génériques
 library(readr)
@@ -29,7 +29,7 @@ library(changepoint)
 ########################
 
 # DECP
-read_delim(file = "res/decp_aife_etat_post2018_marche.csv", 
+read_delim(file = "data/decp-budget_clean/decp_aife_etat_post2018_marche.csv", 
            delim = ";", 
            escape_double = FALSE, 
            col_types = cols(codeCPV_Original = col_character(),
@@ -45,7 +45,7 @@ read_delim(file = "res/decp_aife_etat_post2018_marche.csv",
            trim_ws = TRUE) -> decp_aife_etat_post2018_marche
 
 # DECP avec estimation des paiements mensuels
-read_delim(file = "res/mensualite.csv",
+read_delim(file = "data/decp-budget_clean/mensualite.csv",
            delim = ";", escape_double = FALSE, 
            col_types = cols(dateNotification = col_datetime(format = "%Y-%m-%d"), 
                             anneeNotification = col_double(), 
