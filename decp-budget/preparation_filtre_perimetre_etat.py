@@ -36,6 +36,6 @@ decp_acheteur = decp_aife[keep_cols_acheteur]
 res = decp_acheteur.groupby(['idAcheteur', 'nomAcheteur']).all().sort_values('idAcheteur')
 
 # Export en CSV
-res.to_csv("data/decp/select_acheteurs_grouped.csv", 
+res.to_csv("data/decp-budget_clean/select_acheteurs_grouped.csv",
 	sep = ";", 
 	encoding="UTF-8")

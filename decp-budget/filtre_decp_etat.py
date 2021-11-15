@@ -32,11 +32,11 @@ pd.set_option('mode.chained_assignment', None)
 ## Données sources ##
 #####################
 
-decp_safe = pd.read_csv("data/decp_augmente.csv", 
+decp = pd.read_csv("data/decp/decp_augmente.csv",
 	sep = ";", 
 	dtype={'idAcheteur': str, 'montant': float}, 
 	encoding="UTF-8")
-filtre_decp_etat_safe = pd.read_csv("data/table corr V2.csv", 
+filtre_decp_etat = pd.read_csv("data/decp/table corr V2.csv",
 	sep = ";", 
 	dtype = {'idAcheteur' : str})
 
@@ -107,7 +107,7 @@ mensualite_work = mensualite[keep_cols_mensualite]
 #############
 
 # Données sources sur le périmètre des DECP et du budget de l'État
-decp_aife_etat_post2018_marche.to_csv("res/decp_aife_etat_post2018_marche.csv", 
+decp_aife_etat_post2018_marche.to_csv("data/decp-budget_clean/decp_aife_etat_post2018_marche.csv",
 	sep = ";", 
 	index=False, 
 	decimal=",", 
@@ -115,7 +115,7 @@ decp_aife_etat_post2018_marche.to_csv("res/decp_aife_etat_post2018_marche.csv",
 	encoding="UTF-8")
 
 # Mensualisations, et agrégats sur mensualisations
-mensualite.to_csv("res/mensualite.csv", 
+mensualite.to_csv("data/decp-budget_clean/mensualite.csv",
 	sep = ";", 
 	index=False, 
 	decimal=",", 
