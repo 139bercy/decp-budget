@@ -125,13 +125,51 @@ knitr::kable(oecp, caption = "Chiffres clefs 2020 de l'OECP",
 
 ### Par rapport à l'exécution budgétaire
 
+Comme indiqué en introduction, les données de l'exécution budgétaire ne permettent pas d'obtenir une vue détaillée des dépenses de la commande publique. Pour remédier à cette situation, inscrite dans la nature même des données en question, il est toutefois possible de filtrer les données d'exécution budgétaire, en construisant un périmètre correspondant aux marchés publics. Pour ce faire, les données de l'exécution budgétaire, transmises par la direction du Budget, ont été filtrées de la manière suivante : 
+
+- sur l'ensemble du périmètre des ministères, à l'exception de celui des Armées, faisant l'objet d'une modélisation spécifique ;
+- sur les comptes budgétaires 31, 51 et 52, c'est-à-dire les dépenses e fonctionnement, les dépenses d’investissement corporels et les dépenses d’investissement incorporels ;
+- sur les comptes généraux, en suivant les recommandations de la direction du Budget.
+
+À la suite de cette procédure, les données obtenues sur le budget se décrivent de la manière suivante :
+
 ```{r stats_desc_budget, echo=FALSE, message=FALSE}
-# Import des données d'exécutuon budgétaire
+# Import des données d'exécution budgétaire
 read_delim(file = "data/decp-budget_clean/budget_civil_fonctionnement_general.csv",
            delim = ";",
            col_types = cols(EUR = col_number()), 
            escape_double = FALSE,
            trim_ws = TRUE) -> budget
+
+budget %>%
+  select(EUR) %>%  
+  stat.desc() -> budget_stats
+
+# Présentation en Rmarkdown
+knitr::kable(budget_stats, caption = "Statistiques descriptives des données de l'exécution budgétaire", 
+             align = "lr", 
+             digits = 2, 
+             format.args = list(big.mark = " ", scientific = FALSE))
+```
+
+Ces statistiques descriptives mettent en avant une très grande hétérogénité statistique dans ces paiements, avec des valeurs extrêmement élevées (un maximum à 4e+12), des valeurs négative importantes, et une somme totale de 102 mille milliards, largement supérieure en-cela au budget de l'État, qui dispose d'environ 200 milliards d'euros en recettes nettes[^9]. 
+
+[^9]: Voir par exemple le budget prévisionnel du projet de loi de finances 2021, accessible en ligne : <https://www.budget.gouv.fr/budget-etat>.
+
+L'exploration des données par nature révèle notamment une diversité des paiements retenus, avec par exemple une importante part des dépenses de personnel. Les dépenses d'achats sont en seconde position dans l'ordre descendant, avec 10 mille milliards de paiements - ce qui est bien plus important que les DECP ou les données de l'OECP. Ce sont aussi les paiements les plus nombreux, avec 260 mille paiements recensés
+
+```{r stats_desc_budget_nature, echo=FALSE, message=FALSE}
+# Etude des sommes totales par nature
+budget %>%
+  group_by(Nature) %>%
+  summarise(nombre = n(), tot = sum(EUR)) %>%
+  arrange(desc(tot)) -> budget_nature
+
+# Présentation en Rmarkdown
+knitr::kable(budget_nature, caption = "Statistiques descriptives des données de l'exécution budgétaire", 
+             align = "lrr", 
+             digits = 2, 
+             format.args = list(big.mark = " ", scientific = FALSE))
 ```
 
 ## Périodisation

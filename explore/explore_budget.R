@@ -38,6 +38,8 @@ budget %>%
 # COMMENTAIRE
 # On a des valeurs extrêmement élevées, à 4.254000e+12
 # Et des valeurs négative, importantes
+# Le total est de 102 mille milliards, ce qui va bien au-delà du budget de l'État
+# qui est autour de 200 milliards d'euros en recettes nettes
 
 # Etude des sommes totales par libellé des dépenses
 budget %>%
@@ -75,7 +77,7 @@ budget %>%
 
 # COMMENTAIRE
 # Les achats sont en seconde position, avec 10 mille milliards de paiements
-# Ce qui est bien trop important
+# Ce qui est bien plus important que les DECP ou les données de l'OECP
 # Ce sont aussi les paiements les plus nombreux, avec 260 mille paiements recensés
 # A noter que les Routes et les PPP sont dans des catégories à part, de même que
 # les dépenses relatives à l'immobilier
