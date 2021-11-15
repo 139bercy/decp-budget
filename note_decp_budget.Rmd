@@ -101,13 +101,15 @@ knitr::kable(res01, caption = "Statistiques descriptives des DECP", align = "lrr
 
 Cette présentation synthétique permet d'établir un ordre de grandeur du nombre annuel de marchés à 8 000, et un montant total de ces derniers à 10 milliards d'euros. Ces données sur le périmètre État peuvent être rapprochées à la fois des chiffres clefs de l'OECP et des informations issues de l'exécution budgétaire.
 
+### Par rapport à l'OECP
+
 En ce qui concerne l'étude de la commande publique, l'OECP publie des chiffres clefs regroupant l'État et le secteur hospitalier. Dans se version de 2020, ceux-ci indiquent ainsi un total de 24 139 contrats, pour un montan total de 35 milliards d'euros[^8]. Cela correspond à environ trois fois le nombre et le montant dans les chiffres dont l'on dipose. En l'absence toutefois de distinction de leur part entre État et secteur hospitalier, il est difficile de tirer une conclusion quant à la représentativité de nos données.
 
 [^8]: OECP, "Chiffres clefs 2020", octobre 2021, s. 5, accessible à l'adresse : <https://www.economie.gouv.fr/files/files/directions_services/daj/marches_publics/oecp/recensement/recensement_chiffres2020_20211012.pdf>.
 
 ```{r stats_desc_oecp, echo=FALSE, message=FALSE}
 # Import des chiffres clefs
-read_delim(file = "data/oecp_chiffres-clefs-decp-2020_octobre-2021.csv",
+read_delim(file = "data/oecp/oecp_chiffres-clefs-decp-2020_octobre-2021.csv",
            delim = ";", 
            escape_double = FALSE,
            skip = 1,
@@ -119,6 +121,17 @@ knitr::kable(oecp, caption = "Chiffres clefs 2020 de l'OECP",
              align = "lrrr", 
              digits = 2, 
              format.args = list(big.mark = " ", scientific = FALSE))
+```
+
+### Par rapport à l'exécution budgétaire
+
+```{r stats_desc_budget, echo=FALSE, message=FALSE}
+# Import des données d'exécutuon budgétaire
+read_delim(file = "data/decp-budget_clean/budget_civil_fonctionnement_general.csv",
+           delim = ";",
+           col_types = cols(EUR = col_number()), 
+           escape_double = FALSE,
+           trim_ws = TRUE) -> budget
 ```
 
 ## Périodisation
