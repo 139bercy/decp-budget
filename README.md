@@ -48,3 +48,24 @@ Le script `filtre_budget_etat.py` a pour fonction de filtrer les données d'exé
 - sur l'ensemble du périmètre des ministères, à l'exception de celui des Armées, faisant l'objet d'une modélisation spécifique ;
 - sur les comptes budgétaires 31, 51 et 52, c'est-à-dire les dépenses e fonctionnement, les dépenses d’investissement corporels et les dépenses d’investissement incorporels ;
 - sur les comptes généraux, en suivant les recommandations de la direction du Budget.
+
+## Exploration et note de synthèse
+
+### Exploration des données
+
+L'exploration de données est menée en R, avec les scripts `explore_budget.R` et `explore_decp.R`. Ces scripts représentent une première approche graphique et commentée à ces données. 
+
+## Ressources
+
+La préparation et le premier traitement des données est effectué en Python (3.8.8). L'exploration des données est menée en R, notamment à l'aide des librairies suivantes : 
+
+- readr : 2.0.2
+- dplyr : 1.0.7
+- ggplot2 : 3.3.5
+- lubridate : 1.8.0
+- pastecs : 1.3.21
+- GGally : 2.1.2
+- ggfortify : 0.4.12
+- changepoint : 2.2.2
+
+Rédigée en Rmarkdown (2.11), la note est générée en PDF à l'aide de la chaîne proposée par RStudio, via knitr (1.36) et pandoc (2.12).
