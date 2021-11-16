@@ -6,11 +6,12 @@ output:
   pdf_document:
     extra_dependencies: 
       footmisc: ["bottom"]
+      gfsbodoni: ["default"]
   html_document:
     df_print: paged
 subtitle: Exploration des données essentielles de la commande publique
 lang: fr-FR
-abstract: Cette note présente la méthodologie et les résultats de l'étude des donnéesde
+abstract: Cette note présente la méthodologie et les résultats de l'étude des données de
   la commande publique au service de l'activité de prévision budgétaire. Permise par
   la collaboration avec la direction du Budget, cette exploration des données essentielles
   de la commande publique permet d'estimer la part des marchés à prix fermes à 20%
@@ -18,10 +19,13 @@ abstract: Cette note présente la méthodologie et les résultats de l'étude de
 urlcolor: blue
 linkcolor: blue
 filecolor: blue
+numbersections: true
+toc: true
+fontsize: 12pt
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
 # Introduction

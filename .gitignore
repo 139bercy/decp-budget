@@ -9,6 +9,10 @@
 *.xls
 *.*#
 
+# Latex
+*.tex
+*.log
+
 #TODO
 todo.md
 
