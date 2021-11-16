@@ -32,7 +32,7 @@ La sélection manuelle des données consiste ici à ne sélectionner que les mar
 
 #### Filtre sur les données essentielles de la commande publique
 
-Le script `filtre_decp_etat` a pour fonction de filtrer les données essentielles de la commande publique (DECP), telles que enrichies par le BercyHub, et publiées en accès ouvert à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table/>. À la sortie, on ne conserve que les données :
+Le script `filtre_decp_etat.py` a pour fonction de filtrer les données essentielles de la commande publique (DECP), telles que enrichies par le BercyHub, et publiées en accès ouvert à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table/>. À la sortie, on ne conserve que les données :
 
 - publiées par l'AIFE
 - passées par les acheteurs de l'État 
@@ -53,7 +53,7 @@ Le script `filtre_budget_etat.py` a pour fonction de filtrer les données d'exé
 
 ### Exploration des données
 
-L'exploration de données est menée en R, avec les scripts `explore_budget.R` et `explore_decp.R`. Ces scripts représentent une première approche graphique et commentée à ces données. 
+L'exploration de données est menée en R, avec les scripts `explore_oecp.R`, `explore_budget.R` et `explore_decp.R`. Ces scripts représentent une première approche graphique et commentée à ces données. 
 
 ## Ressources
 
