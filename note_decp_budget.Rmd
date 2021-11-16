@@ -1,7 +1,7 @@
 ---
 title: "Prévision budgétaire et données de la commande publique"
 author: "Jules Rostand"
-date: '2021-10-28'
+date: '2021-11-15'
 output:
   pdf_document:
     extra_dependencies: 
@@ -24,15 +24,15 @@ filecolor: blue
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
+# Introduction
 
-### Contexte
+## Contexte
 
-La direction du Budget s'intéresse, dans le cadre de ses activités de prévision budgétaire, à la modélisation de l'impact de l'inflation sur les dépenses d'achat de l'État. À l'heure actuelle, les données de l'exécution budgétaire ne sont pas liés avec les engagements juridiques pris en amont. Sans connaissance de la nature et des caractéristiques des contrats à l'origine de ces dépenses, la prévision budgétaire est rendue particulièrement délicate. Pourtant, à la suite d'une politique volontariste en la matière, les données essentielles de la commande publique (DECP) sont désormais suivies par la direction des affaires juridiques (DAJ) du secrétariat général (SG) des ministères économiques et financiers et par l'Agence pour l'information financière de l'État (AIFE), avant d'être enrichies par le BercyHub (SG/DSI). Déjà étudiées de manière agrégée par l'Observatoire économique de la commmande publique (OECP)[^5], l'exploration de ces données représente dès lors une piste particulièrement susceptible d'enrichir l'exercice de prévision de la direction du Budget, par le déploiement de nouvelles techniques d'analyse de données.
+La direction du Budget s'intéresse, dans le cadre de ses activités de prévision budgétaire, à la modélisation de l'impact de l'inflation sur les dépenses d'achat de l'État. À l'heure actuelle, les données de l'exécution budgétaire ne sont pas liés avec les engagements juridiques pris en amont. Sans connaissance de la nature et des caractéristiques des contrats à l'origine de ces dépenses, la prévision budgétaire est rendue particulièrement délicate. Pourtant, à la suite d'une politique volontariste en la matière, les données essentielles de la commande publique (DECP) sont désormais suivies par la direction des affaires juridiques (DAJ) du secrétariat général (SG) des ministères économiques et financiers et par l'Agence pour l'information financière de l'État (AIFE), avant d'être enrichies par le BercyHub (SG/DSI). Déjà étudiées de manière agrégée par l'Observatoire économique de la commande publique (OECP)[^5], l'exploration de ces données représente dès lors une piste particulièrement susceptible d'enrichir l'exercice de prévision de la direction du Budget, par le déploiement de nouvelles techniques d'analyse de données.
 
 [^5]: Les chiffres-clefs de la commande publique sont publiés sur le site de l'OECP, à l'adresse : <https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique>. Pour les données antérieures, voir les archives des chiffres clefs à l'adresse : <https://www.economie.gouv.fr/daj/oecp-archives-recensement>.
 
-### Sources et méthodologie
+## Sources et méthodologie
 
 Les données essentielles de la commande publique (DECP) sont publiées par la DAJ du SG Bercy et l'AIFE, puis augmentées par le BercyHub. Elles sont mises en *open source* sur la plateforme du ministère, accessible à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table>.
 
@@ -78,11 +78,13 @@ read_delim(file = "res/decp_aife_etat_post2018_marche.csv",
 decp_aife_etat_post2018_marche
 ```
 
-### Avertissement
+## Avertissement
 
 L'ensemble des analyses et des résultats proposés dans cette note sont à interpréter à la hauteur de l'exhaustivité et de la qualité des données essentielles de la commande publique. En d'autres termes, cette analyse exploratoire reste à compléter par des études plus complètes.
 
-## Analyse descriptive
+# La difficile étude des DECP
+
+## Une lacune dans les données de l'État
 
 Les données essentielles de la commande publique s'interprètent tout d'abord en nombre et en montant. La table ci-dessous retrace le nombre et le montant[^6] annuel des contrats de la commande publique recensés dans la base à l'étude.
 
@@ -101,9 +103,9 @@ knitr::kable(res01, caption = "Statistiques descriptives des DECP", align = "lrr
 
 Cette présentation synthétique permet d'établir un ordre de grandeur du nombre annuel de marchés à 8 000, et un montant total de ces derniers à 10 milliards d'euros. Ces données sur le périmètre État peuvent être rapprochées à la fois des chiffres clefs de l'OECP et des informations issues de l'exécution budgétaire.
 
-### Par rapport à l'OECP
+#### Par rapport à l'OECP
 
-En ce qui concerne l'étude de la commande publique, l'OECP publie des chiffres clefs regroupant l'État et le secteur hospitalier. Dans se version de 2020, ceux-ci indiquent ainsi un total de 24 139 contrats, pour un montan total de 35 milliards d'euros[^8]. Cela correspond à environ trois fois le nombre et le montant dans les chiffres dont l'on dipose. En l'absence toutefois de distinction de leur part entre État et secteur hospitalier, il est difficile de tirer une conclusion quant à la représentativité de nos données.
+En ce qui concerne l'étude de la commande publique, l'OECP publie des chiffres clefs regroupant l'État et le secteur hospitalier. Dans se version de 2020, ceux-ci indiquent ainsi un total de 24 139 contrats, pour un montant total de 35 milliards d'euros[^8]. Cela correspond à environ trois fois le nombre et le montant dans les chiffres dont l'on dipose. En l'absence toutefois de distinction de leur part entre État et secteur hospitalier, il est difficile de tirer une conclusion quant à la représentativité de nos données.
 
 [^8]: OECP, "Chiffres clefs 2020", octobre 2021, s. 5, accessible à l'adresse : <https://www.economie.gouv.fr/files/files/directions_services/daj/marches_publics/oecp/recensement/recensement_chiffres2020_20211012.pdf>.
 
@@ -123,7 +125,7 @@ knitr::kable(oecp, caption = "Chiffres clefs 2020 de l'OECP",
              format.args = list(big.mark = " ", scientific = FALSE))
 ```
 
-### Par rapport à l'exécution budgétaire
+#### Par rapport à l'exécution budgétaire
 
 Comme indiqué en introduction, les données de l'exécution budgétaire ne permettent pas d'obtenir une vue détaillée des dépenses de la commande publique. Pour remédier à cette situation, inscrite dans la nature même des données en question, il est toutefois possible de filtrer les données d'exécution budgétaire, en construisant un périmètre correspondant aux marchés publics. Pour ce faire, les données de l'exécution budgétaire, transmises par la direction du Budget, ont été filtrées de la manière suivante : 
 
@@ -152,7 +154,7 @@ knitr::kable(budget_stats, caption = "Statistiques descriptives des données de 
              format.args = list(big.mark = " ", scientific = FALSE))
 ```
 
-Ces statistiques descriptives mettent en avant une très grande hétérogénité statistique dans ces paiements, avec des valeurs extrêmement élevées (un maximum à 4e+12), des valeurs négative importantes, et une somme totale de 102 mille milliards, largement supérieure en-cela au budget de l'État, qui dispose d'environ 200 milliards d'euros en recettes nettes[^9]. 
+Ces statistiques descriptives mettent en avant une très grande hétérogénéité statistique dans ces paiements, avec des valeurs extrêmement élevées (un maximum à 4e+12), des valeurs négative importantes, et une somme totale de 102 mille milliards, largement supérieure en-cela au budget de l'État, qui dispose d'environ 200 milliards d'euros en recettes nettes[^9]. 
 
 [^9]: Voir par exemple le budget prévisionnel du projet de loi de finances 2021, accessible en ligne : <https://www.budget.gouv.fr/budget-etat>.
 
@@ -172,7 +174,11 @@ knitr::kable(budget_nature, caption = "Statistiques descriptives des données de
              format.args = list(big.mark = " ", scientific = FALSE))
 ```
 
-## Périodisation
+Dans l'ensemble, il apparaît en l'état difficile de parvenir à identifier, en dépit des traitements proposés ici, les données de l'exécution budgétaire relatives à la commande publique.
+
+## dont l'étude fine est nécessaire
+
+### Périodisation
 
 Sur le périmètre de l'État, les données de la commande publique mettent en avant une forte hausse du nombre de marchés publiés en accès ouvert. Cette hausse est le reflet de la mise en place de la politique d'ouverture des données, sans que la baisse à la fin de la période trouve elle d'explication immédiate (délais de publication, problèmes techniques lors de l'agrégation des sources, etc.).
 
@@ -249,7 +255,7 @@ decp_work %>%
           plot.subtitle = element_text(size = 8, hjust = 0.5))
 ```
 
-## Formes de prix
+### Formes de prix
 
 Dans la perspective de la prévision budgétaire, on s'intéresse tout particulièrement aux formes de prix. C'est en effet la forme de ces derniers, fermes, actualisables ou révisables, qui détermine l'influence d'un éventuel choc d'inflation sur les dépenses d'achats de l'État[^2]. En prenant une échelle trimestrielle à même de rendre compte de la structure des commandes de l'administration, on calcule la part du montant des contrats à prix fermes dans les dépenses de la commande publique. Sur la période, celle-ci diminue sensiblement, passant de 25% à 12,5% 
 
@@ -330,7 +336,9 @@ decp_work_marche %>%
           axis.title.y = element_text(size = 8))
 ```
 
-## Estimation de paiements
+# Esquisse d'une méthodologie au service de l'exercice de prévision
+
+## Estimation de la structure des paiements
 
 ```{r preparation_mensualite, echo=FALSE, message=FALSE}
 # DECP avec estimation des paiements mensuels
@@ -354,7 +362,11 @@ mensualite_work %>%
   subset(formePrix != "NA") -> mensualite_work_marche
 ```
 
-Cette évolution dans la répartition des formes de prix se place toutefois du point de vue de la date de notification du contrat. Pour avoir une idée de la situation actuelle, il faut établir une projection de l'exécution budgétaire. A cette fin, on construit des estimations de paiements, construites à partir de la durée estimée du contrat. Le graphique ci-dessous reproduit ces dernières, en agrégeant par année les paiements à effectuer aux fournisseurs.
+Cette évolution dans la répartition des formes de prix se place toutefois du point de vue de la date de notification du contrat. Pour avoir une idée de la situation actuelle, il faut établir une projection de l'exécution budgétaire. A cette fin, on construit des estimations de paiements, construites à partir de la durée estimée du contrat. Ces projections de l'exécuton budgétaire sont d'abord étudiées de manière temporelle, avant de servir à dégager une structure générale de la commande publique.
+
+### Évolution temporelle
+
+Le graphique ci-dessous reproduit ces dernières, en agrégeant par année les paiements à effectuer aux fournisseurs.
 
 ```{r estimation_paiements, echo=FALSE, message=FALSE}
 # Représentation graphique du montant annuel des mensualités
@@ -419,7 +431,11 @@ mensualite_work_marche_cycle %>%
           axis.title.y = element_text(size = 8))
 ```
 
-En établissant une étude sur ce cycle de quatre années, on peut établir une estimation de la part du nombre de paiements pour les marchés à prix fermes, comprise dans un intervalle entre 10 et 20% du nombre total de paiements annuels. En montant, cette part est comprise dans un intervalle entre 15 et 25%, avec une part exceptionnellement élevée de 30%, qui correspond à l'année 2020. Dans l'ensemble, l'hypothèse d'une part de 20% des marchés à prix fermes dans l'ensemble des marchés de la commande publique semble raisonnable.
+En établissant une étude sur ce cycle de quatre années, on peut établir une estimation de la part du nombre de paiements pour les marchés à prix fermes, comprise dans un intervalle entre 10 et 20% du nombre total de paiements annuels. En montant, cette part est comprise dans un intervalle entre 15 et 25%, avec une part exceptionnellement élevée de 30%, qui correspond à l'année 2020. 
+
+### Structure générale
+
+En étudiant ces quatre années, il est possible de construire la répartition de la part de chacune des formes de prix dans le nombre et le montant des marchés de l'État. Les graphqies ci-dessous proposent une représentation graphique de la distribution de ces valeurs.
 
 ```{r cycle_synchro, echo=FALSE, message=FALSE}
 # Point de vue synchronique
@@ -452,6 +468,18 @@ mensualite_work_marche_cycle %>%
           axis.title.y = element_text(size = 8))
 ```
 
-## Conclusion
+Dans l'ensemble, l'hypothèse d'une part de 20% des marchés à prix fermes dans l'ensemble des marchés de la commande publique semble pouvoir être défendue.
+
+## Un essai de prévision budgétaire
+
+### Le scénario
+
+Le scénario est celui d'une hausse de 1 point de l'inflation (IPCH hors tabac) sur 12 mois entre le 1er juillet 2021 et le 30 juin 2022.
+
+### Les limites de la prévision
+
+
+
+# Conclusion
 
 L'exploration des données essentielles de la commande publique a permis de construire une estimation, en nombre et en montant, des marchés à prix fermes à environ 20% de l'ensemble des marchés de l'État. Si cette prévision pourrait s'améliorer dans les années à venir, avec un historique plus important, celle-ci met dès à présent en valeur l'intérêt que représente la publication de ces données, de même que l'interaction croisée entre expertise budgétaire et compétences en analyse de données.
