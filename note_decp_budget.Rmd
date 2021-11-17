@@ -9,7 +9,6 @@ output:
       InriaSerif: ["lining"]
   html_document:
     df_print: paged
-subtitle: Exploration des données essentielles de la commande publique
 lang: fr-FR
 abstract: Cette note présente la méthodologie et les résultats de l'étude des données de
   la commande publique au service de l'activité de prévision budgétaire. Permise par
@@ -44,11 +43,13 @@ L'objectif de prévision de la direction du Budget est de proposer une simulatio
 
 [^13]: Code de la commande publique, art. [R2112-11](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037730965).
 
-[^14]: Code de la commande publique, art. [ R2112-13](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037955789)).
+[^14]: Code de la commande publique, art. [ R2112-13](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037955789).
 
 ## Sources et méthodologie
 
-Les données essentielles de la commande publique (DECP), enrichies par le BercyHub, sont mises en *open source* sur la plateforme du ministère, accessible à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table>. Par la collaboration avec la direction du Budget (2PERF), ces données ont été filtrées en conservant uniquement les marchés publiés par l'AIFE et correspondant aux acheteurs relevant du périmètre de l'État[^4]. Dans un souci de qualité des données, les marchés publiés avant 2018 ont été exclus. Les données à l'étude sont, à la date de l'étude, un tableau contenant 24 041 lignes et 28 colonnes. 
+Les données essentielles de la commande publique (DECP), enrichies par le BercyHub, sont mises en *open source* sur la plateforme du ministère, accessible à l'adresse : <https://data.economie.gouv.fr/explore/dataset/decp_augmente/table>[^15]. Par la collaboration avec la direction du Budget (2PERF), ces données ont été filtrées en conservant uniquement les marchés publiés par l'AIFE et correspondant aux acheteurs relevant du périmètre de l'État[^4]. Dans un souci de qualité des données, les marchés publiés avant 2018 ont été exclus. Les données à l'étude sont, à la date de l'étude, un tableau contenant 24 041 lignes et 28 colonnes. 
+
+[^15]: Un monitoring de ces données est accessible en ligne : <https://139bercy.github.io/decp-monitoring/#dashboard>. Celles-ci font actuellement l'objet d'un audit de qualité, dont les premiers résultats sont disponibles à l'adresse : <https://share.streamlit.io/139bercy/decp-qualite/main>.
 
 Après une première étape de traitement en Python, les DECP sont étudiés ici en R. Un ensemble de techniques d'analyse de données est mis en œuvre, de l'étude de séries temporelles à la représentation graphique. L'ensemble des opérations préalables et des résultats présentés dans cette note sont disponibles sur le dépôt du projet, sur le GitHub du ministère[^10]. 
 
@@ -137,7 +138,7 @@ Ces statistiques descriptives mettent en avant une très grande hétérogénéit
 
 [^9]: Voir par exemple le budget prévisionnel du projet de loi de finances 2021, accessible en ligne : <https://www.budget.gouv.fr/budget-etat>.
 
-L'exploration des données par nature révèle notamment une diversité des paiements retenus, avec par exemple une importante part des dépenses de personnel. Les dépenses d'achats sont en seconde position dans l'ordre descendant, avec 10 mille milliards de paiements - ce qui est bien plus important que les DECP ou les données de l'OECP. Ce sont aussi les paiements les plus nombreux, avec 260 mille paiements recensés
+L'exploration des données par nature révèle notamment une diversité des paiements retenus, avec par exemple une importante part des dépenses de personnel. Les dépenses d'achats sont en seconde position dans l'ordre descendant, avec 10 mille milliards de paiements - ce qui est bien plus important que les DECP ou les données de l'OECP. Ce sont aussi les paiements les plus nombreux, avec 260 mille paiements recensés.
 
 ```{r stats_desc_budget_nature, echo=FALSE, message=FALSE}
 # Etude des sommes totales par nature
