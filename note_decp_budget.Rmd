@@ -11,10 +11,8 @@ output:
     df_print: paged
 lang: fr-FR
 abstract: Cette note présente la méthodologie et les résultats de l'étude des données de
-  la commande publique au service de l'activité de prévision budgétaire. Permise par
-  la collaboration avec la direction du Budget, cette exploration des données essentielles
-  de la commande publique permet d'estimer la part des marchés à prix fermes à 20%
-  de l'ensemble des marchés de l'État.
+  la commande publique au service de l'activité de prévision budgétaire. Menée  pour répondre à une commande de la direction du Budget, cette exploration des données essentielles
+  de la commande publique permet de produire une estimation de l'effet de la hausse de l'inflation sur les dépenses d'achats de l'État. En parvenant à estimer la part des marchés à prix fermes à 20% dans la structure d'ensemble des marchés de l'État, cette note évalue les conséquences de ce choc d'inflation à 80 millions d'euros sur la période du 1er juillet 2021 au 30 juin 2022, et suggère des pistes d'améliorations pour l'utilisation des données essentielles de la commande publique au sein des ministères économiques et financiers.
 urlcolor: blue
 linkcolor: blue
 filecolor: blue
@@ -106,7 +104,7 @@ L'étude des formes de prix des dépenses d'achats de l'État représente une de
 
 Les dépenses d'achats de l'État ne sont à l'heure actuelles pas connues à travers les données de l'exécution budgétaire, et ne sont pas disponibles dans les premières études sur les données essentielles de la commande publique menées par l'OECP.
 
-### Les lacunes de l'exécution budgétaire
+### L'absence de lien entre les commandes publiques et l'exécution budgétaire
 
 Comme indiqué en introduction, les données de l'exécution budgétaire ne permettent pas d'obtenir une vue détaillée des dépenses de la commande publique. Pour remédier à cette situation, inscrite dans la nature même des données en question, il est toutefois possible de filtrer les données d'exécution budgétaire, en construisant un périmètre correspondant aux marchés publics. Pour ce faire, les données de l'exécution budgétaire, transmises par la direction du Budget, ont été filtrées de la manière suivante : 
 
@@ -360,7 +358,7 @@ decp_work_marche %>%
 
 Après avoir étudié, puis exclu les valeurs manquantes (NA), l'on dispose d'un ensemble de données cohérent pour répondre à la commande relative à la prévision budgétaire.
 
-# La modélisation de la structure des paiements de la commande publique permet de produire, avec ses limites, un exercice de prévision budgétaire
+# La modélisation de la structure des paiements de la commande publique permet de produire un essai de prévision budgétaire
 
 À partir de cet ensemble stable sur la période définie et cohérent du point de vue des formes de prix, il est possible de construire une estimation de la structure de la commande publique. C'est à partir de cette reconstruction de la structure même de ces données en matière de forme de prix, qu'il est possible de produire une estimation de l'effet du choc d'inflation sur les dépenses de l'État.
 
@@ -506,10 +504,18 @@ Le scénario retenue pour cette dernière est celui d'une hausse de 1 point de l
 
 En retenant une somme annuelle de 10 milliards d'euros, ce scénario théorique aurait donné, en l'absence d'étude des formes de prix, une hausse des dépenses publiques de 100 millions d'euros pour la période. En prenant en compte la part des prix fermes de 20% en nombre et en montant, cela signifie que seulement 8 milliards d'euros en exécution budgétaire sont pas soumis à l'évolution de l'inflation. Dès lors, une hausse supplémentaire de 1% de l'inflation génère un surcroit de dépense de 80 millions d'euros. Cet exercice méthodologique permet donc de préciser la précision budgétaire, en revoyant de 20 millions d'euros à la baisse l'effet de la hausse d'inflation sur les dépenses d'achats de l'État.
 
-### Les limites de la prévision
+### Les perspectives de la prévision budgétaire
 
+Cette prévision budgétaire, rendue possible par l'ensemble de la chaîne de publication, de traitement et de diffusion des données essentielles de la commande publique, a permis de se saisir des spécificités de ces données. En ce sens, le développement d'une méthodologie spécifique, à même de répondre à la demande de la direction du Budget, met à jour un certain nombre d'évolutions souhaitables de ces données. 
 
+1. À court terme, le suivi et l'audit de qualité des données essentielles de la commande publique, actuellement en cours au sein du BercyHub, gagnerait tout d'abord à être pérennisé, afin d'intégrer dans ses indicateurs de suivi les remontées des besoins des utilisateurs de ces données, comme ici pour la direction du Budget ;
+2. À moyen terme, le schéma de publication des données essentielles de la commande publique, défini par la direction des affaires juridiques de Bercy, pourrait utilement intégrer la catégorie d'administration publique à l'origine du marché, distinguant ainsi les administrations publiques centrales (APUC), les administrations publiques locales (APUL) et les organismes de sécurité sociale (ASSO) ;
+3. À long terme, l'établissement d'un lien entre les données de la commande publique et d'exécution budgétaire semble représenter un objectif particulièrement souhaitable, en prévoyant l'intégration par l'Agence pour l'informatique financière de l'État, d'une correspondance entre identifiants de passation de marchés et numéros d'engagements juridiques.
 
 # Conclusion
 
-L'exploration des données essentielles de la commande publique a permis de construire une estimation, en nombre et en montant, des marchés à prix fermes à environ 20% de l'ensemble des marchés de l'État. Si cette prévision pourrait s'améliorer dans les années à venir, avec un historique plus important, celle-ci met dès à présent en valeur l'intérêt que représente la publication de ces données, de même que l'interaction croisée entre expertise budgétaire et compétences en analyse de données.
+Afin de répondre à l'interrogation de la direction du Budget sur les effets d'un choc d'inflation sur les dépenses d'achats de l'État, il est apparu nécessaire de développer une étude détaillée des données essentielles de la commande publique. A partir de ces données, traitées par la direction des affaires juridiques, l'Agence pour l'informatique financière de l'État et le BercyHub, il a été possible de construire une étude spécifique des formes de prix des marchés. 
+
+Cette exploration des données essentielles de la commande publique a permis de construire une estimation, en nombre et en montant, des marchés ne réagissant pas à l'inflation -- les marchés à prix fermes -- à environ 20% de l'ensemble des marchés de l'État. Avec cette structure de la commande publique définie, et un ordre de grandeur estimé à 10 milliards d'euros par an pour l'État, il est dès lors possible d'estimer l'effet de la hausse de l'inflation d'un point sur un an. La hausse des dépenses est de ce fait estimée à 80 millions d'euros, 20% de moins que la hausse estimée en l'absence de cette étude. 
+
+Si cette prévision pourrait s'améliorer dans les années à venir, avec un historique plus important et un accroissement continu de la qualité des données, celle-ci met dès à présent en valeur l'intérêt que représente la publication de ces données, de même que l'interaction croisée entre expertise budgétaire et compétences en analyse de données.
