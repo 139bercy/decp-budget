@@ -55,6 +55,10 @@ Le script `filtre_budget_etat.py` a pour fonction de filtrer les données d'exé
 
 L'exploration de données est menée en R, avec les scripts `explore_oecp.R`, `explore_budget.R` et `explore_decp.R`. Ces scripts représentent une première approche graphique et commentée à ces données. 
 
+### Note de synthèse
+
+La note de synthèse produite ici est disponible dans le fichier `note_decp-budget.Rmd`. Elle propose une estimation de l'effet de la hausse d'un point de l'inflation sur la période du 1er juillet 2021 au 31 juin 2022 pour les dépenses d'achats de l'État. Elle repose sur l'état des données essentielles de la commande publique en novembre 2021, et nécessiterait d'être actualisée dans l'hypothèse d'une nouvelle commande en la matière.
+
 ## Ressources
 
 La préparation et le premier traitement des données est effectué en Python (3.8.8). L'exploration des données est menée en R, notamment à l'aide des librairies suivantes : 
