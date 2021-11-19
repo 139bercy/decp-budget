@@ -363,7 +363,7 @@ Après avoir étudié, puis exclu les valeurs manquantes (NA), l'on dispose d'un
 
 # La modélisation de la structure des paiements de la commande publique permet de produire un essai de prévision budgétaire
 
-À partir de ces données, stables sur la période stable définie et cohérentes du point de vue des formes de prix, il est possible de construire une estimation de la structure de la commande publique. Cette reconstruction de la structure de ces données en matière de forme de prix, permet, dans un second temps, de produire une estimation de l'effet du choc d'inflation sur les dépenses de l'État.
+À partir de ces données, stables sur la période définie et cohérentes du point de vue des formes de prix, il est possible de construire une estimation de la structure de la commande publique. Cette reconstruction de la structure de ces données en matière de forme de prix, permet, dans un second temps, de produire une estimation de l'effet du choc d'inflation sur les dépenses d'achats de l'État.
 
 ## La modélisation de la structure des paiements de la commande publique
 
@@ -389,11 +389,11 @@ mensualite_work %>%
   subset(formePrix != "NA") -> mensualite_work_marche
 ```
 
-L'évolution dans la répartition des formes de prix de la commande publique d'État a jusque-là été étudiée du point de vue de la seule date de notification du contrat. Pour répondre à la demande de la direction du Budget, il faut établir une projection de l'exécution budgétaire. A cette fin, on construit des estimations de mensualités des paiements, définies à partir de la durée estimée du contrat. Ces projections de l'exécution budgétaire sont d'abord analysées de manière temporelle, avant de servir à dégager une structure générale de la commande publique.
+L'évolution dans la répartition des formes de prix de la commande publique d'État a jusque-là été étudié du point de vue de la seule date de notification du contrat. Pour répondre à la demande de la direction du Budget, il faut établir une projection de l'exécution budgétaire. À cette fin, des estimations de mensualités des paiements, définies à partir de la durée estimée du contrat et du montant calculé, sont construites. Ces projections de l'exécution budgétaire sont d'abord analysées de manière temporelle, avant de servir à dégager une structure générale de la commande publique.
 
 ### La construction de la valeur annuelle des paiements
 
-Le graphique ci-dessous reproduit ces dernières, en agrégeant par année les paiements à effectuer aux fournisseurs.
+Les mensualités théoriques construites permettent de produire une estimation de l'exécution budgétaire. Le graphique ci-dessous agrège par année ces paiements théoriques à effectuer chaque mois aux fournisseurs.
 
 ```{r estimation_paiements, echo=FALSE, message=FALSE}
 # Représentation graphique du montant annuel des mensualités
@@ -414,7 +414,7 @@ mensualite_work_marche %>%
           axis.title.y = element_text(size = 8))
 ```
 
-Cette représentation graphique fait écho au cycle de 4 ans de la commande publique, du début de l'année 2019 à la fin de l'année 2022. En prenant les estimations de paiements pour ces quatre années comme représentation de la structure générale de la commande publique, on construit la répartition annuelle des formes de prix, en nombre et en montant.
+La distribution annuelles des dépenses budgétaires théorique représentée ci-dessus graphique fait état d'une diminution graduelle des dépenses avec le temps. Cette réduction s'explique simplement par le fait que la passation de commandes s'effectue au fur et à mesure, et non pas pour l'ensemble des années à venir. Concrètement, le cycle de la commande publique est identifié à 4 années par la direction du Budget de la commande publique, pour un renouvellement de l'essentiel des marchés. Dans le cadre de cette étude, c'est la période du début de l'année 2019 à la fin de l'année 2022 qui sera dès lors retenue, et sur lesquelles on construit la répartition annuelle des formes de prix, en nombre et en montant, représentée ci-dessous.
 
 ```{r cycle, echo=FALSE, message=FALSE}
 # Construction d'un agrégat annuel des paiements de la commande publique
@@ -458,11 +458,13 @@ mensualite_work_marche_cycle %>%
           axis.title.y = element_text(size = 8))
 ```
 
-En établissant une étude sur ce cycle de quatre années, on peut établir une estimation de la part du nombre de paiements pour les marchés à prix fermes, comprise dans un intervalle entre 10 et 20% du nombre total de paiements annuels. En montant, cette part est comprise dans un intervalle entre 15 et 25%, avec une part exceptionnellement élevée de 30%, qui correspond à l'année 2020. 
+Sur ce cycle de quatre années, la part du nombre de paiements pour les marchés à prix fermes, qui diminue de manière croissante, est comprise dans un intervalle entre 10 et 20% du nombre total de paiements annuels. En montant, cette part est également décroissante sur la période, et reste comprise dans un intervalle entre 15 et 25%, avec une part exceptionnellement élevée de 30% pour l'année 2020. 
 
-### Définition d'une structure générale des paiementss
+### La répartition par formes de prix des paiements
 
-En étudiant ces quatre années, il est possible de construire la répartition de la part de chacune des formes de prix dans le nombre et le montant des marchés de l'État. Les graphiques ci-dessous proposent une représentation graphique de la distribution de ces valeurs.
+Sur ces quatre années, il est possible de construire la répartition de la part de chacune des formes de prix dans le nombre et le montant des marchés de l'État. Après avoir établi les ordres de grandeur de cette structure théorique, l'analyse détaillée de la diminution croissante de la part des marchés à prix fermes dans l'ensemble des marchés de l'État permet de définir une valeur de référence pour cette étude.
+
+Les deux graphiques ci-dessous proposent tout d'abord, en nombre et en montant, une représentation graphique de la distribution de la part de chacune des formes de marchés de la commande publique d'État. Reprenant de manière synthétique les graphiques d'évolution temporelle de la répartition des formes de prix, ces deux graphiques permettent de fixer un ordre de grandeur de la structure de la commande publique. En nombre comme en montant, les marchés à prix révisables représentent 70% des commandes d'État, tandis que les prix fermes et les prix fermes et actualisables correspondent respectivement à 20 et 10% de ces dernières.
 
 ```{r cycle_synchro, echo=FALSE, message=FALSE}
 # Point de vue synchronique
@@ -495,23 +497,46 @@ mensualite_work_marche_cycle %>%
           axis.title.y = element_text(size = 8))
 ```
 
-Dans l'ensemble, l'hypothèse d'une part de 20% des marchés à prix fermes dans l'ensemble des marchés de la commande publique semble pouvoir être retenue.
+À partir de ces ordres de grandeur, il est alors possible de définir ensuite une valeur de référence pour cette étude. Pour ce faire, l'analyse détaillée du rapport entre formes de prix et durées du marchés est nécessaire, afin de prendre en compte la diminution croissante de la part des marchés à prix fermes dans l'ensemble des marchés de l'État.
+
+Les statistiques descriptives mettent en évidence une durée moyenne et médiane largement supérieure pour les contrats révisables, par rapport aux contrats à prix fermes et à prix fermes et actualisables. Cette statistique est le reflet de la pratique de la commande publique, où les marchés à prix fermes sont conclus sur des plus petites durées. Pour la prévision d'exécution budgétaire effectuée ici, cela signifie qu'à mesure que l'on projette la situation actuelle dans l'avenir, le nombre de contrats à prix fermes diminue. En d'autres termes, la réduction en nombre et en montant des marchés à prix fermes sur la période 2019 à 2022 s'explique par la nature même de ces contrats, qui tendent à porter sur des durées courtes et à être conclus peu de temps avant leur exécution.
+
+```{r stats_desc_formes_prix, echo=FALSE, message=FALSE}
+# Statistiques descriptives des durées de marchés par formes de prix
+decp_work_marche %>% 
+  select(c(formePrix, dureeMoisCalculee)) %>%
+  na.omit %>% 
+  group_by(formePrix) %>%
+  summarise(
+    moyenne=mean(dureeMoisCalculee),
+    std.dev=sd(dureeMoisCalculee),
+    min=min(dureeMoisCalculee), 
+    q1 = quantile(dureeMoisCalculee, 0.25),
+    médiane=median(dureeMoisCalculee),
+    q3 = quantile(dureeMoisCalculee, 0.75),
+    max=max(dureeMoisCalculee)) -> res03
+
+knitr::kable(res03, caption = "Statistiques descriptives des durées de marchés par formes de prix", align = "lrrrrrr", digits = 2, format.args = list(big.mark = " ",
+  scientific = FALSE))
+```
+
+Dans le cadre de cette analyse, il semble tout d'abord pertinent de retenir à la fois la part de marchés à prix fermes et celle de marchés à prix fermes et actualisables, ceux-ci étant également non-sensibles à l'inflation. En outre, les valeurs hautes du début de période correspondent davantage à cette étude que les valeurs de fin de période, du fait de la structure de la commande publique. En restant conservateur, l'hypothèse d'une part de 30% des marchés à prix fermes dans l'ensemble des marchés de la commande publique semble pouvoir être retenue.
 
 ## Un essai de prévision budgétaire
 
-A partir de cette hypothèse, il est possible de construire un essai de prévision budgétaire. Après avoir présenté une estimation du surcroit de dépenses, les limites de cet exercice de prévision sont identifiées.
+À partir de cette hypothèse, il est possible de construire un essai de prévision budgétaire. Après avoir présenté une estimation du surcroit de dépenses, les limites de cet exercice de prévision sont identifiées.
 
 ### Le surcroit de dépenses de l'État
 
-Le scénario retenue pour cette dernière est celui d'une hausse de 1 point de l'inflation (IPCH hors tabac) sur 12 mois entre le 1er juillet 2021 et le 30 juin 2022. Cette période correspond à une année entière ; on peut dès lors faire l'hypothèse que sa structure est de la commande publique est identique à celle dégagée ci-dessus pour une année civile, en l'absence d'effets de seuils identifiés en fin d'année pour ces dernières. 
+Le scénario retenue pour cette dernière est celui d'une hausse de 1 point de l'inflation (IPCH hors tabac) sur 12 mois entre le 1er juillet 2021 et le 30 juin 2022. Cette période correspond à une année entière ; on peut dès lors faire une seconde hypothèse, à savoir que la structure de la commande publique sur cette période est identique à celle dégagée ci-dessus pour une année civile, en l'absence d'effets de seuils identifiés en fin d'année pour ces dernières. 
 
-En retenant une somme annuelle de 10 milliards d'euros, ce scénario théorique aurait donné, en l'absence d'étude des formes de prix, une hausse des dépenses publiques de 100 millions d'euros pour la période. En prenant en compte la part des prix fermes de 20% en nombre et en montant, cela signifie que seulement 8 milliards d'euros en exécution budgétaire sont pas soumis à l'évolution de l'inflation. Dès lors, une hausse supplémentaire de 1% de l'inflation génère un surcroit de dépense de 80 millions d'euros. Cet exercice méthodologique permet donc de préciser la précision budgétaire, en revoyant de 20 millions d'euros à la baisse l'effet de la hausse d'inflation sur les dépenses d'achats de l'État.
+En retenant une somme annuelle de 10 milliards d'euros, ce scénario théorique aurait donné, en l'absence d'étude des formes de prix, une hausse des dépenses publiques de 100 millions d'euros pour la période. En prenant en compte la part des prix fermes de 30% en nombre et en montant, cela signifie que l'évolution de l'inflation ne s'applique en théorie qu'à 7 milliards d'euros en exécution budgétaire. Dès lors, une hausse supplémentaire de 1% de l'inflation génère un surcroit de dépense de 70 millions d'euros. Cet exercice méthodologique permet donc de préciser la précision budgétaire, en revoyant de 30 millions d'euros à la baisse l'effet de la hausse d'inflation sur les dépenses d'achats de l'État.
 
 ### Les perspectives de la prévision budgétaire
 
-Cette prévision budgétaire, rendue possible par l'ensemble de la chaîne de publication, de traitement et de diffusion des données essentielles de la commande publique, a permis de se saisir des spécificités de ces données. En ce sens, le développement d'une méthodologie spécifique, à même de répondre à la demande de la direction du Budget, met à jour un certain nombre d'évolutions souhaitables de ces données. 
+Cette prévision budgétaire, rendue possible par l'ensemble de la chaîne de publication, de traitement et de diffusion des données essentielles de la commande publique, a permis de se saisir des spécificités de ces données. En effet, le développement d'une méthodologie spécifique, à même de répondre à la demande de la direction du Budget, met à jour un certain nombre d'évolutions souhaitables de ces données. 
 
-1. À court terme, le suivi et l'audit de qualité des données essentielles de la commande publique, actuellement en cours au sein du BercyHub, gagnerait tout d'abord à être pérennisé, afin d'intégrer dans ses indicateurs de suivi les remontées des besoins des utilisateurs de ces données, comme ici pour la direction du Budget ;
+1. À court terme, le suivi et l'audit de qualité des données essentielles de la commande publique, actuellement en cours au sein du BercyHub, gagnerait à être pérennisé, afin d'intégrer dans ses indicateurs de suivi les remontées des besoins des utilisateurs de ces données, comme ici pour la direction du Budget ;
 2. À moyen terme, le schéma de publication des données essentielles de la commande publique, défini par la direction des affaires juridiques de Bercy, pourrait utilement intégrer la catégorie d'administration publique à l'origine du marché, distinguant ainsi les administrations publiques centrales (APUC), les administrations publiques locales (APUL) et les organismes de sécurité sociale (ASSO) ;
 3. À long terme, l'établissement d'un lien entre les données de la commande publique et d'exécution budgétaire semble représenter un objectif particulièrement souhaitable, en prévoyant l'intégration par l'Agence pour l'informatique financière de l'État, d'une correspondance entre identifiants de passation de marchés et numéros d'engagements juridiques.
 
@@ -519,6 +544,6 @@ Cette prévision budgétaire, rendue possible par l'ensemble de la chaîne de pu
 
 Afin de répondre à l'interrogation de la direction du Budget sur les effets d'un choc d'inflation sur les dépenses d'achats de l'État, il est apparu nécessaire de développer une étude détaillée des données essentielles de la commande publique. A partir de ces données, traitées par la direction des affaires juridiques, l'Agence pour l'informatique financière de l'État et le BercyHub, il a été possible de construire une étude spécifique des formes de prix des marchés. 
 
-Cette exploration des données essentielles de la commande publique a permis de construire une estimation, en nombre et en montant, des marchés ne réagissant pas à l'inflation -- les marchés à prix fermes -- à environ 20% de l'ensemble des marchés de l'État. Avec cette structure de la commande publique définie, et un ordre de grandeur estimé à 10 milliards d'euros par an pour l'État, il est dès lors possible d'estimer l'effet de la hausse de l'inflation d'un point sur un an. La hausse des dépenses est de ce fait estimée à 80 millions d'euros, 20% de moins que la hausse estimée en l'absence de cette étude. 
+Cette exploration des données essentielles de la commande publique a permis de construire une estimation, en nombre et en montant, des marchés ne réagissant pas à l'inflation -- les marchés à prix fermes -- à 30% de l'ensemble des marchés de l'État. Avec cette structure de la commande publique définie, et un ordre de grandeur estimé à 10 milliards d'euros par an pour l'État, il est dès lors possible d'estimer l'effet de la hausse de l'inflation d'un point sur un an. La hausse des dépenses est de ce fait estimée à 70 millions d'euros, 30% de moins que la hausse estimée en l'absence de cette étude. 
 
 Si cette prévision pourrait s'améliorer dans les années à venir, avec un historique plus important et un accroissement continu de la qualité des données, celle-ci met dès à présent en valeur l'intérêt que représente la publication de ces données, de même que l'interaction croisée entre expertise budgétaire et compétences en analyse de données.
