@@ -7,18 +7,18 @@ output:
     extra_dependencies:
       footmisc: bottom
       InriaSerif: lining
-  word_document: default
   html_document:
     df_print: paged
+  word_document: default
 lang: fr-FR
 abstract: Cette note présente la méthodologie et les résultats de l'étude des données
   de la commande publique au service de l'activité de prévision budgétaire. Menée  pour
   répondre à une commande de la direction du Budget, cette exploration des données
   essentielles de la commande publique permet de produire une estimation de l'effet
   de la hausse de l'inflation sur les dépenses d'achats de l'État. En parvenant à
-  estimer la part des marchés à prix fermes à 20% dans la structure d'ensemble des
+  estimer la part des marchés à prix fermes à 30% dans la structure d'ensemble des
   marchés de l'État, cette note évalue les conséquences d'un choc d'inflation de 1%
-  à 80 millions d'euros pour la période du 1er juillet 2021 au 30 juin 2022, et suggère
+  à 70 millions d'euros pour la période du 1er juillet 2021 au 30 juin 2022, et suggère
   des pistes d'améliorations pour l'utilisation des données essentielles de la commande
   publique au sein des ministères économiques et financiers.
 urlcolor: blue
@@ -166,7 +166,7 @@ knitr::kable(budget_nature, caption = "Statistiques descriptives des données de
 
 Avec des ordres de grandeurs largement supérieurs au budget de l'État lui-même, reflet de la nature de ces données de transcation, il apparaît en l'état difficile de parvenir à identifier dans les données de l'exécution budgétaire, en dépit des traitements proposés ici, les dépenses relatives à la commande publique.
 
-### Les valeurs de référence de l'Observatoire économique de la commande publique
+### Les valeurs de référence de l'OECP
 
 L'Observatoire économique de la commande publique (OECP) publie des chiffres clefs regroupant l'État et le secteur hospitalier. Dans se version de 2020, ceux-ci indiquent ainsi un total de 24 139 contrats, pour un montant total de 35 milliards d'euros[^8].
 
@@ -190,7 +190,7 @@ knitr::kable(oecp, caption = "Chiffres clefs 2020 de l'OECP",
 
 Si les études annuelles de l'OECP permettent d'obtenir un ordre de grandeur de la commande publique, celles-ci nécessitent toutefois d'être prolongées pour répondre au besoin de la direction du Budget. En l'absence de distinction entre État et secteur hospitalier, il n'est en effet pas possible d'établir un ordre de grandeur des dépenses d'achats de l'État. En outre, si ces études fournissent des indications sur l'évolution des prix, celles-ci ne permettent pas de connaître la part de marchés à prix fermes dans la commande publique. Dès lors, une étude spécifique des données essentielles de la commande publique est nécessaire.
 
-## Une étude spécifique des données essentielles de la commande publique est nécessaire
+## Une étude spécifique des DECP est nécessaire
 
 Pour mener cette nécessaire étude spécifique des données essentielles de la commande publique, il faut construire une période et un ensemble cohérent pour ces dernières. Les données essentielles de la commande publique connaissent en effet dimportantes évolutions en nombre et en montant, dont a table ci-dessous retrace les variations[^6].
 
