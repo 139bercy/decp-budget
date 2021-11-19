@@ -1,25 +1,34 @@
 ---
 title: "Prévision budgétaire et données de la commande publique"
 author: "Jules Rostand"
-date: 2021-11-18
+date: "19 novembre 2021"
 output:
   pdf_document:
-    extra_dependencies: 
-      footmisc: ["bottom"]
-      InriaSerif: ["lining"]
+    extra_dependencies:
+      footmisc: bottom
+      InriaSerif: lining
+  word_document: default
   html_document:
     df_print: paged
 lang: fr-FR
-abstract: Cette note présente la méthodologie et les résultats de l'étude des données de
-  la commande publique au service de l'activité de prévision budgétaire. Menée  pour répondre à une commande de la direction du Budget, cette exploration des données essentielles
-  de la commande publique permet de produire une estimation de l'effet de la hausse de l'inflation sur les dépenses d'achats de l'État. En parvenant à estimer la part des marchés à prix fermes à 20% dans la structure d'ensemble des marchés de l'État, cette note évalue les conséquences d'un choc d'inflation de 1% à 80 millions d'euros pour la période du 1er juillet 2021 au 30 juin 2022, et suggère des pistes d'améliorations pour l'utilisation des données essentielles de la commande publique au sein des ministères économiques et financiers.
+abstract: Cette note présente la méthodologie et les résultats de l'étude des données
+  de la commande publique au service de l'activité de prévision budgétaire. Menée  pour
+  répondre à une commande de la direction du Budget, cette exploration des données
+  essentielles de la commande publique permet de produire une estimation de l'effet
+  de la hausse de l'inflation sur les dépenses d'achats de l'État. En parvenant à
+  estimer la part des marchés à prix fermes à 20% dans la structure d'ensemble des
+  marchés de l'État, cette note évalue les conséquences d'un choc d'inflation de 1%
+  à 80 millions d'euros pour la période du 1er juillet 2021 au 30 juin 2022, et suggère
+  des pistes d'améliorations pour l'utilisation des données essentielles de la commande
+  publique au sein des ministères économiques et financiers.
 urlcolor: blue
 linkcolor: blue
 filecolor: blue
-numbersections: true
-toc: true
+numbersections: yes
+toc: yes
 fontsize: 11pt
-thanks: "Note d'information : Sécrétariat général des ministères économiques et financiers (SG)/DSI/BercyHub."
+thanks: 'Note d''information : Sécrétariat général des ministères économiques et financiers
+  (SG)/DSI/BercyHub.'
 ---
 
 ```{r setup, include=FALSE}
